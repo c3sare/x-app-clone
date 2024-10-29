@@ -1,0 +1,80 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import xIcon from "public/x.svg?raw";
+import googleIcon from "public/google.svg?raw";
+import appleIcon from "public/apple.svg?raw";
+import { Button, buttonVariants } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
+const routes = [
+	{name: "About", href: "/about"},
+	{name: "Download the X app", href: "/download-x-app"},
+	{name: "Help Center", href: "/help-center"},
+	{name: "Terms of Service", href: "/terms-of-service"},
+	{name: "Privacy Policy", href: "/privacy-policy"},
+	{name: "Cookie Policy", href: "/cookie-policy"},
+	{name: "Accessibility", href: "/accessibility"},
+	{name: "Ads info", href: "/ads-info"},
+	{name: "Blog", href: "/blog"},
+	{name: "Careers", href: "/careers"},
+	{name: "Brand Resources", href: "/brand-resources"},
+	{name: "Advertising", href: "/advertising"},
+	{name: "Marketing", href: "/marketing"},
+	{name: "X for Business", href: "/x-for-business"},
+	{name: "Developers", href: "/developers"},
+	{name: "Directory", href: "/directory"},
+	{name: "Settings", href: "/settings"},
+]
+---
+
+<Layout title="X. It's what's happening / X">
+	<div class="flex flex-col lg:h-dvh w-full">
+		<div class="flex-1 flex">
+			<div class="flex-1 items-center justify-center hidden lg:flex">
+				<div class="max-w-lg w-full p-4 fill-white" set:html={xIcon}/>
+			</div>
+			<div class="p-4 w-full max-w-xl flex flex-col gap-4 justify-around mx-auto">
+				<div class="lg:hidden w-12 fill-white" set:html={xIcon}/>
+				<div>
+				<h1 class="text-4xl sm:text-7xl font-bold my-8">Happening now</h1>
+				<span class="text-3xl font-bold my-4">Join today.</span>
+				</div>
+				<div class="flex flex-col gap-4 w-full">
+					<Button variant="secondary"><span set:html={googleIcon}/>Sign up with Google</Button>
+					<Button variant="secondary" className='font-bold'><span set:html={appleIcon}/>Sign up with Apple</Button>
+					<div class="relative text-center my-2 w-full before:absolute before:w-full before:h-[1px] before:left-0 before:top-1/2 before:bg-muted before:-translate-y-1/2">
+						<div class="px-2 bg-background absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">or</div>
+					</div>
+					<a href="/register" class={cn(buttonVariants({variant: "default"}), "font-bold")}>Create account</a>
+					<div class="text-xs">
+						By signing up, you agree to the
+						<a class="text-blue-500 hover:underline" href="/tos">Terms of Service</a>
+						and
+						<a class="text-blue-500 hover:underline" href="/privacy">Privacy Policy</a>,
+						including
+						<a class="text-blue-500 hover:underline" href="/rules-and-policies/twitter-cookies">
+							Cookie Use.
+						</a>
+					</div>
+				</div>
+				<div class="flex flex-col w-full gap-4">
+					<span class="font-bold text-2xl">
+						Already have an account?
+					</span>
+					<Button variant="outline"><span class="text-primary font-bold text-base">Sign in</span></Button>
+				</div>
+			</div>
+		</div>
+		<div class="w-full">
+			<nav class="w-full py-3 px-4 flex items-center justify-center flex-wrap gap-4">
+				{routes.map(route => (
+					<a href={route.href} class="text-xs text-gray-400 hover:underline">
+						{route.name}
+					</a>
+				))}
+				<div class="text-gray-400 text-xs">
+					© 2024 X Corp.
+				</div>
+			</nav>
+		</div>
+	</div>
+</Layout>
